@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+    branches:
+      - test-*
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    name: echo
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo'
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Show current datetime
+        run: echo ${{ env.CURRENT_DATETIME }}
+
+  # notify:
+  #   name: "push slack"
