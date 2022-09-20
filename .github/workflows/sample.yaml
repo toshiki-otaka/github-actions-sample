@@ -26,6 +26,7 @@ jobs:
         run: |
           echo ${{ env.CURRENT_DATETIME }}
           echo ${{ env.ENV }}
+          echo ${{ github.ref }}
 
   # notify:
   #   name: "push slack"
