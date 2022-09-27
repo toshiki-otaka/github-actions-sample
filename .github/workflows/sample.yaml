@@ -7,16 +7,14 @@ on:
 
 env:
   ENV: dev
+  CURRENT_DATETIME: $(date +'%Y%m%d%H%M%S')
 
 jobs:
   echo:
     runs-on: ubuntu-latest
     name: echo
-    env:
-      CURRENT_DATETIME: dev-$(date +'%Y%m%d%H%M%S')
     strategy:
       matrix:
-        tag: dev-$(date +'%Y%m%d%H%M%S')
         target: [step1, step2, step3, step4]
 
     steps:
@@ -28,7 +26,6 @@ jobs:
           echo ${{ env.CURRENT_DATETIME }}
           echo ${{ env.ENV }}
           echo ${{ github.ref }}
-          echo ${{ matrix.tag }}
 
   # notify:
   #   name: "push slack"
