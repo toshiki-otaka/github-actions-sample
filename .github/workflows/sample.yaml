@@ -23,13 +23,12 @@ jobs:
 
       - name: Echo
         run: |
-          echo "ENV=$(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)"
+          echo "ENV=$(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)" >> ${GITHUB_ENV}
           echo "TAG=$(echo ${{ github.ref }} | cut -d '/' -f 3)" >> ${GITHUB_ENV}
-          echo "ENV: ${ENV}"
-          echo "TAG: ${TAG}"
       
-      - name: Echo
+      - name: Echo ENV
         run: |
+          echo ${{ env.ENV }}
           echo ${{ env.TAG }}
 
   # notify:
