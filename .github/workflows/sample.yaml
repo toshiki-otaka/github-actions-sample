@@ -3,29 +3,20 @@ name: test
 on:
   push:
     branches:
-      - test-*
-
-env:
-  ENV: dev
-  CURRENT_DATETIME: ${{ (date +'%Y%m%d%H%M%S') }}
+      - dev-*
 
 jobs:
   echo:
     runs-on: ubuntu-latest
     name: echo
-    strategy:
-      matrix:
-        target: [step1, step2, step3, step4]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Show current datetime
+      - name: Echo
         run: |
-          echo ${{ env.CURRENT_DATETIME }}
-          echo ${{ env.ENV }}
-          echo ${{ github.sha }}
+          echo ${{ github.ref }}
 
   # notify:
   #   name: "push slack"
