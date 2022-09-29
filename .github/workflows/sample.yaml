@@ -25,7 +25,11 @@ jobs:
         run: |
           echo $(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)
           echo "TAG=$(echo ${{ github.ref }} | cut -d '/' -f 3)" >> ${GITHUB_ENV}
-          echo "${{ env.TAG }}"
+          echo ${TAG}
+      
+      - name: Echo
+        run: |
+          echo ${{ env.TAG }}
 
   # notify:
   #   name: "push slack"
