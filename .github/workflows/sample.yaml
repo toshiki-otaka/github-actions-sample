@@ -16,7 +16,8 @@ jobs:
 
       - name: Echo
         run: |
-          echo ${{ github.ref }}
+          ENV=${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1
+          echo ${ENV}
 
   # notify:
   #   name: "push slack"
