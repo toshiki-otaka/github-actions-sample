@@ -24,9 +24,8 @@ jobs:
       - name: Echo
         run: |
           echo $(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)
-          echo ${SHA}
           echo "TAG=$(echo ${{ github.ref }} | cut -d '/' -f 3)" >> ${GITHUB_ENV}
-          echo ${{ env.TAG }}
+          echo "${{ env.TAG }}"
 
   # notify:
   #   name: "push slack"
