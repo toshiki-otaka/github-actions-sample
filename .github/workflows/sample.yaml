@@ -13,11 +13,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Set Environment Variables
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          echo ${SHA}
+          echo ${SHA::15}
 
       - name: Echo
         run: |
-          ENV=$(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)
-          echo ${ENV}
+          echo $(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)
+          echo ${SHA}
+          echo "TAG=$(echo ${{ github.ref }} | cut -d '/' -f 3)" >> ${GITHUB_ENV}
+          echo ${{ env.TAG }}
 
   # notify:
   #   name: "push slack"
