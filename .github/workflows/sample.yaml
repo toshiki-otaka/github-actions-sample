@@ -16,7 +16,7 @@ jobs:
 
       - name: Echo
         run: |
-          ENV=${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1
+          ENV=$(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)
           echo ${ENV}
 
   # notify:
