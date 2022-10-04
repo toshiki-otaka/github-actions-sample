@@ -16,7 +16,7 @@ jobs:
       
       - name: Set Environment Variables
         run: |
-          echo "SHA=${{ github.sha }}" >> ${GITHUB_ENV}
+          echo "SHA=${{ github.sha }}"
           echo "ENV=$(echo ${{ github.ref }} | cut -d '/' -f 3 | cut -d '-' -f 1)" >> ${GITHUB_ENV}
           echo "TAG=$(echo ${{ github.ref }} | cut -d '/' -f 3)" >> ${GITHUB_ENV}
       
