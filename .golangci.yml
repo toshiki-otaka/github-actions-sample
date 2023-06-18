@@ -1,7 +1,7 @@
 linters-settings:
   custom:
     argument_checker:
-      path: ./plugin/argument_checker.so
+      path: ./plugins/argument_checker.so
       description: argument_checker is checking if the first argument of query and command interface function is context.Context.
 
 linters:
