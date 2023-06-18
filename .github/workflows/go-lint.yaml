@@ -7,14 +7,22 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3.5.2
+      
+      - name: Check and get dependencies
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod
+      
       - name: Build and install plugins
         run: |
           git clone https://github.com/toshiki-otaka/argument_checker.git
           cd argument_checker
-          go build -buildmode=plugin -o '${{ github.workspace }}/plugins/argument_checker.so' ./plugin/main.go
+          cat go.mod
+          go build -buildmode=plugin -o '${{ github.workspace }}/.plugins/argument_checker.so' ./plugin/main.go
         working-directory: ${{ runner.temp }}
         env:
           CGO_ENABLED: 1
+      
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
