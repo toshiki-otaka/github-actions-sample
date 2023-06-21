@@ -7,6 +7,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3.5.2
+      
+      - name: Check and get dependencies
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod
+          go env
+
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
@@ -14,3 +21,7 @@ jobs:
           install-mode: goinstall
           args: --timeout 10m
           only-new-issues: true
+      
+      - name: check-golangci-lint-version
+        run: |
+          go version -m /home/runner/go/bin/golangci-lint | grep golang.org/x/tools
