@@ -24,4 +24,4 @@ jobs:
       
       - name: check-golanci-lint-tools-version
         run: |
-          go version -m /home/runner/go/bin/golangci-lint | grep golang.org/x/tools/go/analysis
+          go version -m /home/runner/go/bin/golangci-lint | grep golang.org/x/tools
