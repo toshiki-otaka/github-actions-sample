@@ -21,3 +21,7 @@ jobs:
           install-mode: goinstall
           args: --timeout 10m
           only-new-issues: true
+      
+      - name: check-golanci-lint-tools-version
+        run: |
+          go version -m /home/runner/go/bin/golangci-lint | grep golang.org/x/tools
