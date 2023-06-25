@@ -11,6 +11,12 @@ jobs:
         with:
           go-version-file: ./go.mod
           cache: true
+      
+      - name: Check and get dependencies
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod
+        working-directory: ${{ github.workspace }}
 
       - name: Build and install plugins
         run: |
