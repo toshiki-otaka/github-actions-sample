@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version-file: ./go.mod
-          cache: true
+          # cache: true
       
       - name: Check and get dependencies
         run: |
