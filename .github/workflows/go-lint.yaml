@@ -16,14 +16,12 @@ jobs:
         run: |
           go mod tidy
           git diff --exit-code go.mod
-        working-directory: ${{ github.workspace }}
 
       - name: Build and install plugins
         run: |
           git clone https://github.com/toshiki-otaka/argument_checker.git
           cd argument_checker
           go build -o '${{ github.workspace }}/.plugins/argument_checker.so' -buildmode=plugin plugin/main.go
-        working-directory: ${{ runner.temp }}
         env:
           CGO_ENABLED: 1
 
