@@ -10,7 +10,6 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version-file: ./go.mod
-          cache: true
 
       - name: Build and install plugins
         run: |
