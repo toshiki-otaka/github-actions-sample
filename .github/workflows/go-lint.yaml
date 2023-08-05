@@ -10,14 +10,9 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version-file: ./go.mod
-
-      # - name: Download module
-      #   run: |
-      #     go mod download
-      #   working-directory: ${{ github.workspace }}
+          cache: true
 
       - name: Build and install plugins
-        if: ${{ steps.setup-go.outputs.cache-hit != 'true'  }}
         run: |
           git clone https://github.com/toshiki-otaka/argument_checker.git
           cd argument_checker
