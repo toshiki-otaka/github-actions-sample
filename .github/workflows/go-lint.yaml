@@ -11,10 +11,10 @@ jobs:
         with:
           go-version-file: ./go.mod
 
-      - name: Download module
-        run: |
-          go mod download
-        working-directory: ${{ github.workspace }}
+      # - name: Download module
+      #   run: |
+      #     go mod download
+      #   working-directory: ${{ github.workspace }}
 
       - name: Build and install plugins
         if: ${{ steps.setup-go.outputs.cache-hit != 'true'  }}
