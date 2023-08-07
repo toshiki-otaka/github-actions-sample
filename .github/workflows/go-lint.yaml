@@ -10,6 +10,7 @@ jobs:
       - uses: actions/setup-go@v4.0.1
         with:
           go-version-file: ./go.mod
+          cache: false
       
       - name: Install dependencies
         run: go mod download
