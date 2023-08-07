@@ -11,9 +11,6 @@ jobs:
         with:
           go-version-file: ./go.mod
           cache: false
-      
-      - name: Install dependencies
-        run: go mod download
 
       - name: Build and install plugins
         run: |
@@ -31,3 +28,4 @@ jobs:
           install-mode: goinstall
           args: --timeout 10m
           only-new-issues: true
+          skip-pkg-cache: true
