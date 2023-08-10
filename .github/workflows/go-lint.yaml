@@ -14,6 +14,9 @@ jobs:
       - name: Build and install plugins
         run: |
           git clone https://github.com/toshiki-otaka/argument_checker.git
+          pwd
+          cd argument_checker
+          pwd
           go build -o '${{ github.workspace }}/.plugins/argument_checker.so' -buildmode=plugin plugin/main.go
         working-directory: ${{ runner.temp }}
         env:
