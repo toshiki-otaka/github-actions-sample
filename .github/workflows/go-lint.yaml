@@ -28,6 +28,8 @@ jobs:
           install-mode: goinstall
           args: --timeout 10m
           only-new-issues: true
+          skip-pkg-cache: true
+          skip-build-cache: true
       
       - name: check golangci-lint version
         run: go version -m /home/runner/go/bin/golangci-lint
