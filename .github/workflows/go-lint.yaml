@@ -30,4 +30,4 @@ jobs:
           only-new-issues: true
       
       - name: check golangci-lint version
-        run: which golangci-lint
+        run: go version -m /home/runner/go/bin/golangci-lint
