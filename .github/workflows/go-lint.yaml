@@ -13,7 +13,7 @@ jobs:
 
       - name: Build and install plugins
         run: |
-          git clone git@github.com:toshiki-otaka/custom_linters.git
+          git clone https://github.com/toshiki-otaka/custom_linters.git
           cd custom_linters
           go build -o '${{ github.workspace }}/.plugins/custom_linters.so' -buildmode=plugin plugin/main.go
         working-directory: ${{ runner.temp }}
