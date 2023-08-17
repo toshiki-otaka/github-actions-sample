@@ -11,15 +11,14 @@ jobs:
         with:
           go-version-file: ./go.mod
 
-      # - name: Build and install plugins
-      #   run: |
-      #     git clone https://github.com/toshiki-otaka/argument_checker.git
-      #     cd argument_checker
-      #     go build -o '${{ github.workspace }}/.plugins/argument_checker.so' -buildmode=plugin plugin/main.go
-      #     file -z ${{ github.workspace }}/.plugins/argument_checker.so
-      #   working-directory: ${{ runner.temp }}
-      #   env:
-      #     CGO_ENABLED: 1
+      - name: Build and install plugins
+        run: |
+          git clone git@github.com:toshiki-otaka/custom_linters.git
+          cd custom_linters
+          go build -o '${{ github.workspace }}/.plugins/custom_linters.so' -buildmode=plugin plugin/main.go
+        working-directory: ${{ runner.temp }}
+        env:
+          CGO_ENABLED: 1
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
@@ -30,6 +29,4 @@ jobs:
           only-new-issues: true
           skip-pkg-cache: true
           skip-build-cache: true
-      
-      - name: check golangci-lint version
-        run: go version -m /home/runner/go/bin/golangci-lint
+
