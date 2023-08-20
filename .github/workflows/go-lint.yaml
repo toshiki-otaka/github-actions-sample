@@ -23,6 +23,7 @@ jobs:
           echo ${{ github.workspace }}
           ls ${{ github.workspace }}
           echo ${{ runner.temp }}
+          pwd
         working-directory: ${{ runner.temp }}
         env:
           CGO_ENABLED: 1
