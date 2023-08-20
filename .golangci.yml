@@ -1,14 +1,14 @@
 linters-settings:
   govet:
     check-shadowing: true
-  custom:
-    custom_linters:
-      path: .plugins/custom_linters.so
-      description: custom_linters is checking terms of snkrdunk.com.
+  # custom:
+  #   custom_linters:
+  #     path: .plugins/custom_linters.so
+  #     description: custom_linters is checking terms of snkrdunk.com.
 
 linters:
   disable-all: true
   enable:
-    - custom_linters
+    # - custom_linters
     - typecheck
     - govet
