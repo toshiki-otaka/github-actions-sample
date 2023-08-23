@@ -21,7 +21,7 @@ jobs:
       - name: Build plugins
         run: |
           go mod download
-          go build -o '${{ github.workspace }}/.plugins/custom_linters.so' -buildmode=plugin ./plugin/main.go
+          go build -x -o '${{ github.workspace }}/.plugins/custom_linters.so' -buildmode=plugin ./plugin/main.go
         working-directory: ${{ github.workspace }}/custom_linters
         env:
           CGO_ENABLED: 1
