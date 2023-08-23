@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
 
-      - name: Checkout argument_checker
+      - name: Checkout custom_linters
         uses: actions/checkout@v3.5.2
         with:
-          repository: toshiki-otaka/argument_checker
-          path: argument_checker
+          repository: snkrdunk/custom_linters
+          path: custom_linters
 
       - uses: actions/setup-go@v4.0.1
         with:
@@ -21,8 +21,8 @@ jobs:
       - name: Build plugins
         run: |
           go mod download
-          go build -o '${{ github.workspace }}/.plugins/argument_checker.so' -buildmode=plugin ./plugin/main.go
-        working-directory: ${{ github.workspace }}/argument_checker
+          go build -o '${{ github.workspace }}/.plugins/custom_linters.so' -buildmode=plugin ./plugin/main.go
+        working-directory: ${{ github.workspace }}/custom_linters
         env:
           CGO_ENABLED: 1
 
@@ -33,6 +33,6 @@ jobs:
           install-mode: goinstall
           args: --timeout 10m
           only-new-issues: true
-          # skip-pkg-cache: true
-          # skip-build-cache: true
+          skip-pkg-cache: true
+          skip-build-cache: true
 

@@ -2,13 +2,13 @@ linters-settings:
   govet:
     check-shadowing: true
   custom:
-    argument_checker:
-      path: .plugins/argument_checker.so
-      description: argument_checker is checking terms of snkrdunk.com.
+    custom_linters:
+      path: .plugins/custom_linters.so
+      description: test.
 
 linters:
   disable-all: true
   enable:
-    - argument_checker
+    - custom_linters
     - typecheck
     - govet
