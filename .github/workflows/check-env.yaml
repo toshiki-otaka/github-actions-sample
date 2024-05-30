@@ -12,6 +12,8 @@ jobs:
       
       - name: Use Skip Server Test action
         uses: ./.github/actions/set-env
+        with:
+          changed_files: ${{ steps.changed-files.outputs.files }}
       
       - name: check env
         run: echo "${{ env.SKIP_SERVER_TEST }}"
