@@ -29,4 +29,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4.0.0
       - name: Check
-        run: echo "Check"
+        run: echo ${{ needs.check-skip-server-test.outputs.skip-server-test }}
