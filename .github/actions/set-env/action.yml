@@ -1,10 +1,10 @@
 name: Skip Server Test for Frontend Changes
 description: Add SKIP_SERVER_TEST=true environment variable if changes are only in the frontend directory
 
-outputs:
-  skip-server-test:
-    description: "SKIP_SERVER_TEST environment variable"
-    value: ${{ steps.set-env.outputs.skip-server-test }}
+# outputs:
+#   skip-server-test:
+#     description: "SKIP_SERVER_TEST environment variable"
+#     value: ${{ steps.set-env.outputs.skip-server-test }}
 
 runs:
   using: "composite"
@@ -28,4 +28,4 @@ runs:
 
         echo "skip-server-test is $skip_server_test"
 
-        echo "skip-server-test=$skip_server_test" >> ${GITHUB_OUTPUT}
+        echo "SKIP_SERVER_TEST=$skip_server_test" >> ${GITHUB_ENV}
