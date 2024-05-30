@@ -17,6 +17,9 @@ jobs:
       - id: set-skip-server-test
         name: Use Skip Server Test action
         uses: ./.github/actions/set-env
+      
+      - name: Check
+        run: echo "結果 ${{ steps.set-skip-server-test.outputs.SKIP_SERVER_TEST }}"
   
   check:
     needs: check-skip-server-test
@@ -25,5 +28,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.0.0
+
+      - name: Check1
+        run: echo "${{ needs.check-skip-server-test.outputs}}"
+      
       - name: Check
-        run: echo ${{ needs.check-skip-server-test.outputs.skip-server-test }}
+        run: echo "${{ needs.check-skip-server-test.outputs.skip-server-test }}"
