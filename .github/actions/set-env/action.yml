@@ -8,18 +8,13 @@ runs:
       shell: bash
       run: |
         git fetch origin ${{ github.event.before }}
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
-        cat changed_files.txt
-
-        files=$(cat changed_files.txt)
-
+        
         skip_server_test=true
-
-        for file in $files; do
+        for file in git diff --name-only ${{ github.event.before }} ${{ github.sha }}; do
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
             break
           fi
         done
 
-        echo "SKIP_SERVER_TEST=$skip_server_test" >> $GITHUB_OUTPUT
+        echo "SKIP_SERVER_TEST=$skip_server_test" >> $GITHUB_ENV
