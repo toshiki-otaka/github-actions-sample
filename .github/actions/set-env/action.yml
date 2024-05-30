@@ -4,7 +4,7 @@ description: Add SKIP_SERVER_TEST=true environment variable if changes are only 
 runs:
   using: "composite"
   steps:
-    - name: Set SKIP_SERVER_TEST environment variable(For Pull Request)
+    - name: Set SKIP_SERVER_TEST environment variable
       if: ${{ github.event_name == 'pull_request' }}
       shell: bash
       run: |
