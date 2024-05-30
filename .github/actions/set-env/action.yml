@@ -3,13 +3,23 @@ description: Add SKIP_SERVER_TEST=true environment variable if changes are only 
 
 runs:
   using: "composite"
+  if: ${{ github.event_name == 'pull_request' }}
   steps:
+    - uses: actions/checkout@v4.0.0
+      name: checkout "${{ github.base_ref }}"
+      with:
+        ref: ${{ github.base_ref }}
+    
+    - uses: actions/checkout@v4.0.0
+      name: checkout "${{ github.base_ref }}"
+      with:
+        ref: ${{ github.head_ref }}
+    
     - name: Check for frontend changes
       shell: bash
       run: |
-        echo "マージ先のコミットログ${{ github.event.pull_request.base.sha }}"
         skip_server_test=true
-        for file in $(git diff --name-only ${{ github.event.pull_request.base.sha }}...${{ github.sha }}); do
+        for file in $(git diff origin/${{ github.base_ref }} --name-only); do
           echo $file;
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
