@@ -3,7 +3,6 @@ description: Add SKIP_SERVER_TEST=true environment variable if changes are only 
 
 runs:
   using: "composite"
-  if: ${{ github.event_name == 'pull_request' }}
   steps:
     - name: Check for frontend changes
       shell: bash
