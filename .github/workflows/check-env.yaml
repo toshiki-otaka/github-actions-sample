@@ -17,6 +17,9 @@ jobs:
       - id: set-skip-server-test
         name: Use Skip Server Test action
         uses: ./.github/actions/set-env
+      
+      - name: set-output
+        run: echo "skip-server-test=${{ steps.set-skip-server-test.outputs.SKIP_SERVER_TEST }}" >> $GITHUB_OUTPUT
   
   check:
     needs: check-skip-server-test
