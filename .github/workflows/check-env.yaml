@@ -10,6 +10,8 @@ jobs:
     name: Check if the modification is for the front only
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4.0.0
+      
       - name: Use Skip Server Test action
         uses: ./.github/actions/set-env
       
