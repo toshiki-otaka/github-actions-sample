@@ -11,6 +11,7 @@ runs:
         
         skip_server_test=true
         for file in git diff --name-only ${{ github.event.before }} ${{ github.sha }}; do
+          echo $file;
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
             break
