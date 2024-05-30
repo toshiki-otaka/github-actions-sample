@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.0.0
       - name: Use Skip Server Test action
-        uses: ./actions/set-skip-server-test-env
+        uses: ./actions/set-env
       - name: check env
         run: echo "${{ env.SKIP_SERVER_TEST }}"
       - name: Set skip server test env
