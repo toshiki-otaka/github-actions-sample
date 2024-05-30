@@ -5,6 +5,7 @@ outputs:
   skip-server-test:
     description: "SKIP_SERVER_TEST environment variable"
     value: ${{ steps.set.outputs.SKIP_SERVER_TEST }}
+    default: "false"
 
 runs:
   using: "composite"
@@ -23,7 +24,6 @@ runs:
         for file in $(git diff origin/${{ github.base_ref }} --name-only); do
           echo $file;
           if [[ $file != frontend/* ]]; then
-            skip_server_test=false
             break
           fi
         done
