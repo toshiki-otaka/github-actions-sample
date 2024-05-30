@@ -4,7 +4,8 @@ description: Add SKIP_SERVER_TEST=true environment variable if changes are only 
 runs:
   using: "composite"
   steps:
-    - name: Check for frontend changes
+    - name: Set SKIP_SERVER_TEST environment variable(For Pull Request)
+      if: ${{ github.event_name == 'pull_request' }}
       shell: bash
       run: |
         git fetch origin ${{ github.base_ref }}
