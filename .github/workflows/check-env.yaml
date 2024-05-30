@@ -19,7 +19,7 @@ jobs:
       - name: Check
         run: |
           echo "set-skip-server-test output ${{ env.SKIP_SERVER_TEST }}"
-          echo "skip-serer-test=${{ env.SKIP_SERVER_TEST }}" >> $GITHUB_OUTPUT
+          echo "skip-serer-test=${{ env.SKIP_SERVER_TEST }}" >> ${GITHUB_OUTPUT}
   
   check:
     needs: check-skip-server-test
