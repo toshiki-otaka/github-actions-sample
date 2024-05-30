@@ -9,14 +9,15 @@ jobs:
   check-skip-server-test:
     name: Check if the modification is for the front only
     runs-on: ubuntu-22.04
-    outputs:
-      skip-server-test: ${{ steps.set-skip-server-test.outputs.SKIP_SERVER_TEST }}
     steps:
       - uses: actions/checkout@v4.0.0
       
       - id: set-skip-server-test
         name: Use Skip Server Test action
         uses: ./.github/actions/set-env
+      
+      - name: Check
+        run: echo "set-skip-server-test output ${{ steps.set-skip-server-test.outputs.SKIP_SERVER_TEST }}"
   
   check:
     needs: check-skip-server-test
