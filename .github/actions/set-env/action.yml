@@ -29,3 +29,5 @@ runs:
         echo "skip-server-test is $skip_server_test"
 
         echo "skip-server-test=$skip_server_test" >> $GITHUB_OUTPUT
+
+        echo $GITHUB_OUTPUT
