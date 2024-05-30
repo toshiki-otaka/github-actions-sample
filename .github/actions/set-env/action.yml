@@ -4,12 +4,12 @@ description: Add SKIP_SERVER_TEST=true environment variable if changes are only 
 outputs:
   skip-server-test:
     description: "SKIP_SERVER_TEST environment variable"
-    value: ${{ steps.set.outputs.skip-server-test }}
+    value: ${{ steps.set-env.outputs.skip-server-test }}
 
 runs:
   using: "composite"
   steps:
-    - id: set
+    - id: set-env
       name: Set SKIP_SERVER_TEST environment variable
       if: ${{ github.event_name == 'pull_request' }}
       shell: bash
@@ -28,6 +28,4 @@ runs:
 
         echo "skip-server-test is $skip_server_test"
 
-        echo "skip-server-test=$skip_server_test" >> $GITHUB_OUTPUT
-
-        echo $GITHUB_OUTPUT
+        echo "skip-server-test=$skip_server_test" >> ${GITHUB_OUTPUT}
