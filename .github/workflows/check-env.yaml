@@ -22,7 +22,7 @@ jobs:
   check:
     name: check
     runs-on: ubuntu-22.04
-    if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
+    if: ${{ needs['check-skip-server-test'].outputs.skip-server-test != 'true' }}
     steps:
       - uses: actions/checkout@v4.0.0
       - name: Check
