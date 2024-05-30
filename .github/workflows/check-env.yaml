@@ -1,0 +1,27 @@
+name: check-env
+on:
+  push:
+    branches:
+      - main
+jobs:
+  check-skip-server-test:
+    name: Check if the modification is for the front only
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.0.0
+      - name: Use Skip Server Test action
+        uses: ./actions/set-skip-server-test-env
+      - name: check env
+        run: echo "${{ env.SKIP_SERVER_TEST }}"
+      - name: Set skip server test env
+        run: echo "::set-output name=skip-server-test::${{ env.SKIP_SERVER_TEST }}"
+  
+  check:
+    name: check
+    runs-on: ubuntu-22.04
+    if: ${{ needs.check-skip-server-test.outputs.skip-server-test == 'true' }}
+    steps:
+      - uses: actions/checkout@v4.0.0
+
+      - name: check env
+        run: "echo ${{ env }}"

@@ -1,0 +1,27 @@
+name: Skip Server Test for Frontend Changes
+description: Add SKIP_SERVER_TEST=true environment variable if changes are only in the frontend directory
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check for frontend changes
+      shell: bash
+      run: |
+        skip_server_test=true
+        for file in ${{ inputs.changed_files }}; do
+          if [[ ! $file == frontend/* ]]; then
+            skip_server_test=false
+            break
+          fi
+        done
+        if [[ $skip_server_test == "true" ]]; then
+          echo "SKIP_SERVER_TEST=true" >> $GITHUB_ENV
+          echo "Server tests will be skipped because only frontend changes detected."
+        else
+          echo "Server tests will not be skipped."
+        fi
+
+inputs:
+  changed_files:
+    description: "List of changed files"
+    required: true
