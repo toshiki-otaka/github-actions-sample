@@ -22,4 +22,4 @@ runs:
           fi
         done
 
-        echo "SKIP_SERVER_TEST=$skip_server_test" >> $GITHUB_ENV
+        echo "SKIP_SERVER_TEST=$skip_server_test" >> $GITHUB_OUTPUT
