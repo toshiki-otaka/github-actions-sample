@@ -21,7 +21,7 @@ runs:
       run: |
         skip_server_test=true
         
-        for file in ${{ env.ALL_CHANGED_FILES }}; do
+        for file in $(${{ env.ALL_CHANGED_FILES }}); do
           echo $file;
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
