@@ -8,6 +8,7 @@ on:
 jobs:
   check-skip-server-test:
     name: Check if the modification is for the front only
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-22.04
     outputs:
       skip-server-test: ${{ steps.set-skip-server-test.outputs.skip-server-test }}

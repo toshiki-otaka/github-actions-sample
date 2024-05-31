@@ -8,7 +8,6 @@ outputs:
 
 runs:
   using: "composite"
-  if: ${{ github.event_name == 'pull_request' }}
   steps:
     - id: changed-files
       name: Get changed files
