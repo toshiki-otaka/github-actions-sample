@@ -8,6 +8,7 @@ outputs:
 
 runs:
   using: "composite"
+  if: ${{ github.event_name == 'pull_request' }}
   steps:
     - id: changed-files
       name: Get changed files
@@ -21,10 +22,6 @@ runs:
       run: |
         skip_server_test=true
 
-        for file in ${ALL_CHANGED_FILES}; do
-          echo $file;
-        done
-        
         for file in ${ALL_CHANGED_FILES}; do
           echo $file;
           if [[ $file != frontend/* ]]; then
