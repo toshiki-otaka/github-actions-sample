@@ -1,23 +1,32 @@
-name: Skip Server Test for Frontend Changes
-description: Add SKIP_SERVER_TEST=true environment variable if changes are only in the frontend directory
+name: Set skip-server-test
+description: Add skip-server-test=true variable to output if changes are only in the frontend directory
+
+outputs:
+  skip-server-test:
+    description: "skip-server-test flag variable"
+    value: ${{ steps.set.outputs.skip-server-test }}
 
 runs:
   using: "composite"
   steps:
-    - name: Set SKIP_SERVER_TEST environment variable
-      if: ${{ github.event_name == 'pull_request' }}
+    - id: changed-files
+      name: Get changed files
+      uses: tj-actions/changed-files@v44
+    
+    - id: set
+      name: Set skip-server-test to output
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
       shell: bash
       run: |
-        git fetch origin ${{ github.base_ref }}
-        
         skip_server_test=true
-        
-        for file in $(git diff origin/${{ github.base_ref }} --name-only); do
+
+        for file in ${ALL_CHANGED_FILES}; do
           echo $file;
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
             break
           fi
         done
-
-        echo "SKIP_SERVER_TEST=$skip_server_test" >> $GITHUB_ENV
+        
+        echo "skip-server-test=$skip_server_test" >> ${GITHUB_OUTPUT}
