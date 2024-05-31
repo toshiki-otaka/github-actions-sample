@@ -1,12 +1,6 @@
 name: Set skip-server-test
 description: Add skip-server-test=true variable to output if changes are only in the frontend directory
 
-inputs:
-  changed_files:
-    description: "List of changed files"
-    required: true
-    type: string
-
 outputs:
   skip-server-test:
     description: "skip-server-test flag variable"
@@ -15,13 +9,19 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - id: changed-files
+      name: Get changed files
+      uses: tj-actions/changed-files@v44
+    
     - id: set
       name: Set skip-server-test to output
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
       shell: bash
       run: |
         skip_server_test=true
         
-        for file in ${{ inputs.changed_files }}; do
+        for file in ${{ env.ALL_CHANGED_FILES }}; do
           echo $file;
           if [[ $file != frontend/* ]]; then
             skip_server_test=false
