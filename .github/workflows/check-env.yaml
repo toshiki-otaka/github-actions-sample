@@ -21,7 +21,7 @@ jobs:
 
   check:
     needs: check-skip-server-test
-    if: ${{ needs.check-skip-server-test.outputs.skip-server-test }} != 'true'
+    if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
     name: check
     runs-on: ubuntu-22.04
     steps:
