@@ -4,13 +4,14 @@ on:
     branches:
       - main
   pull_request:
-  
+
 jobs:
   check-skip-server-test:
     name: Check if the modification is for the front only
     runs-on: ubuntu-22.04
     outputs:
       skip-server-test: ${{ steps.set-output.outputs.skip-server-test }}
+      value1: ${{ steps.set-output.outputs.output1 }}
     steps:
       - uses: actions/checkout@v4.0.0
       
@@ -23,7 +24,8 @@ jobs:
         run: |
           echo "set-skip-server-test output ${{ env.SKIP_SERVER_TEST }}"
           echo "skip-serer-test=${{ env.SKIP_SERVER_TEST }}" >> "$GITHUB_OUTPUT"
-  
+          echo "output1=value1" >> "$GITHUB_OUTPUT"
+
   check:
     needs: check-skip-server-test
     if: ${{ needs.check-skip-server-test.outputs.skip-server-test }} != 'true'
@@ -31,9 +33,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.0.0
-
-      - name: Check1
-        run: echo "${{ needs.check-skip-server-test.outputs}}"
       
       - name: Check
-        run: echo "${{ needs.check-skip-server-test.outputs.skip-server-test }}"
+        run: |
+          echo "skip-server-test is ${{ needs.check-skip-server-test.outputs.skip-server-test }}"
+          echo "value1 is ${{ needs.check-skip-server-test.outputs.value1 }}"
