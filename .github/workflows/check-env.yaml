@@ -13,8 +13,18 @@ jobs:
       skip-server-test: ${{ steps.set-skip-server-test.outputs.skip-server-test }}
     steps:
       - uses: actions/checkout@v4.0.0
-        with:
-          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+      
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
       
       - id: set-skip-server-test
         name: Use Skip Server Test action
