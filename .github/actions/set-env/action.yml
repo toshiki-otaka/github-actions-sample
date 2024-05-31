@@ -20,6 +20,10 @@ runs:
       shell: bash
       run: |
         skip_server_test=true
+
+        for file in ${ALL_CHANGED_FILES}; do
+          echo $file;
+        done
         
         for file in ${ALL_CHANGED_FILES}; do
           echo $file;
