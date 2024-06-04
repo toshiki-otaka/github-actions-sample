@@ -35,6 +35,10 @@ jobs:
     needs: check
     name: check2
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ["a","b","c"]
     steps:
       - uses: actions/checkout@v4.0.0
       
