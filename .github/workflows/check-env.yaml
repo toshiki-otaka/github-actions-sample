@@ -32,7 +32,6 @@ jobs:
 
   check2:
     needs: [check, check-skip-server-test]
-    if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
     name: check2
     runs-on: ubuntu-22.04
     strategy:
@@ -41,7 +40,9 @@ jobs:
         target: ["a","b","c"]
     steps:
       - uses: actions/checkout@v4.0.0
+        if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
       
       - name: Check
+        if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
         run: |
           echo "check2"
