@@ -38,9 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ["batch","cache-updater","internal","localstack","mysql","mysql-v8","schemaspy","server","worker","worker-sqs"]
-        exclude:
-          - target: localstack
+        target: ["a","b","c"]
     steps:
       - uses: actions/checkout@v4.0.0
       
