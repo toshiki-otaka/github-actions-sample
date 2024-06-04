@@ -30,3 +30,14 @@ jobs:
       - name: Check
         run: |
           echo "skip-server-test is ${{ needs.check-skip-server-test.outputs.skip-server-test }}"
+
+  check2:
+    needs: check
+    name: check2
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.0.0
+      
+      - name: Check
+        run: |
+          echo "check2"
