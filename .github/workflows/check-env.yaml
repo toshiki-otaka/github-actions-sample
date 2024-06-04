@@ -21,7 +21,6 @@ jobs:
 
   check:
     needs: check-skip-server-test
-    if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
     name: check
     runs-on: ubuntu-22.04
     steps:
@@ -32,7 +31,8 @@ jobs:
           echo "skip-server-test is ${{ needs.check-skip-server-test.outputs.skip-server-test }}"
 
   check2:
-    needs: check
+    needs: [check, check-skip-server-test]
+    if: ${{ needs.check-skip-server-test.outputs.skip-server-test != 'true' }}
     name: check2
     runs-on: ubuntu-22.04
     strategy:
