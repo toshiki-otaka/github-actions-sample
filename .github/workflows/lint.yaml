@@ -15,6 +15,7 @@ jobs:
         with:
           app-id: ${{ vars.REPOSITORYACCESSTOKENGENERATORAPPID }}
           private-key: ${{ secrets.REPOSITORYACCESSTOKENGNERATORSECRET }}
+          owner: ${{ github.repository_owner }}
       - name: Checkout
         uses: actions/checkout@v4.1.7
         with:
