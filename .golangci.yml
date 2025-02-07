@@ -1,0 +1,14 @@
+linters-settings:
+  govet:
+    check-shadowing: true
+  custom:
+    custom_linters:
+      path: .plugins/custom_linters.so
+      description: test.
+
+linters:
+  disable-all: true
+  enable:
+    - custom_linters
+    - typecheck
+    - govet
