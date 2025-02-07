@@ -1,0 +1,3 @@
+[submodule "linter_modules/err_checker"]
+	path = linter_modules/err_checker
+	url = https://github.com/toshiki-otaka/err_checker
